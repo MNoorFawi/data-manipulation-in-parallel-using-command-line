@@ -78,7 +78,7 @@ so let's explain the code;
 
 here we have the cities.txt file as input and replace the spaces with + sign to use them the url we'll send to the api using the **tr** command line tool.
 
-1.  **parallel -j400% --progress -C 'curl -s "<http://api.openweathermap.org/data/2.5/weather?q>={}&appid=<your-api-key>"'**
+1.  **parallel -j400% --progress -C 'curl -s "<http://api.openweathermap.org/data/2.5/weather?q>={}&appid=your-api-key"'**
 
 here we tell the command line to do the following command in **parallel** using 400% of the CPU cores as the number of parallel jobs, i.e, in my machine there's 4 cores so I will run 16 jobs in parallel. --progress command to give me the information as it proceeds. -C to take care of the delimiter in the data file.
 
@@ -86,8 +86,7 @@ here we tell the command line to do the following command in **parallel** using 
 
 here we use **jq** tool to extract only the fields we want from the json result.
 
-1.  **json2csv | **
-**awk -F, '{print $1","$2-273.15}' **
+1.  **json2csv | awk -F, '{print $1","$2-273.15}' **
 
 converting the json data to csv and then getting the Celsius degree of the temperature as it comes in Kelvin.
 
