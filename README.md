@@ -41,7 +41,7 @@ let's get the data we want in parallel and clean it adnd write it to disk.
 
 ``` bash
 < cities.txt tr ' ' '+' | 
-parallel -j400% --progress -C, 'curl -s "http://api.openweathermap.org/data/2.5/weather?q={}&appid=17201c85f66369c680dcbf19352f3530"' | 
+parallel -j400% --progress -C, 'curl -s "http://api.openweathermap.org/data/2.5/weather?q={}&appid=<your-api-key>"' | 
 jq '{name: .name, temperature: .main.temp}' | 
 json2csv | awk -F, '{print $1","$2-273.15}' | 
 header -r city,temperature | 
@@ -86,7 +86,7 @@ here we tell the command line to do the following command in **parallel** using 
 
 here we use **jq** tool to extract only the fields we want from the json result.
 
-1.  **json2csv | awk -F, '{print $1","$2-273.15}' |**
+1.  **json2csv | awk -F, '{print $1","$2-273.15}' **
 
 converting the json data to csv and then getting the Celsius degree of the temperature as it comes in Kelvin.
 
