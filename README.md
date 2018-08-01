@@ -86,12 +86,13 @@ here we tell the command line to do the following command in **parallel** using 
 
 here we use **jq** tool to extract only the fields we want from the json result.
 
-1.  **json2csv | awk -F, '{print $1","$2-273.15}' **
+1.  **json2csv |**
+  **awk -F, '{print $1","$2-273.15}'**
 
 converting the json data to csv and then getting the Celsius degree of the temperature as it comes in Kelvin.
 
-1.  **header -r city,temperature | **
-**csvsql --query 'SELECT \* FROM stdin ORDER BY temperature DESC;' &gt; temp.csv**
+1.  **header -r city,temperature |**
+ **csvsql --query 'SELECT \* FROM stdin ORDER BY temperature DESC;' &gt; temp.csv**
 
 then we give names to the columns and sort the data using SQL commands.
 
