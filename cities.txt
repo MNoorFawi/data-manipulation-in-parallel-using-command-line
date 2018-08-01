@@ -1,0 +1,45 @@
+Rome
+Madrid
+Paris
+Berlin
+Warsaw
+Moscow
+Bucharest
+London
+Brussels
+Zurich
+Bogota
+Rio De Janeiro
+Buenos Aires
+Caracas
+Sucre
+Santiago
+Montevideo
+Asuncion
+Lima
+Quito
+Cairo
+Nairobi
+Tunis
+Dakar
+Yaounde
+Harare
+Lusaka
+Rabat
+Abuja
+Cape Town
+Manila
+Kuala Lumpur
+New Delhi
+Jakarta
+Abu Dhabi
+Seoul
+Baku
+Tokyo
+Singapore
+Bangkok
+Washington
+Ottawa
+Mexico City
+Canberra
+Wellington
