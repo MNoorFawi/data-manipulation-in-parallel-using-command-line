@@ -41,7 +41,7 @@ let's get the data we want in parallel and clean it adnd write it to disk.
 
 ``` bash
 < cities.txt tr ' ' '+' | 
-parallel -j400% --progress -C, 'curl -s "http://api.openweathermap.org/data/2.5/weather?q={}&appid=17201c85f66369c680dcbf19352f3530"' | 
+parallel -j400% --progress -C, 'curl -s "http://api.openweathermap.org/data/2.5/weather?q={}&appid=your-api-key"' | 
 jq '{name: .name, temperature: .main.temp}' | 
 json2csv | awk -F, '{print $1","$2-273.15}' | 
 header -r city,temperature | 
@@ -65,10 +65,10 @@ let's check the data we have and then explain the code chunk by chunk.
 | city      | temperature |
 |-----------|-------------|
 | Abu Dhabi | 37.00       |
-| Cairo     | 36.00       |
-| Madrid    | 35.57       |
-| Rome      | 34.37       |
-| New Delhi | 34.00       |
+| Washington DC | 36.00       |
+| New Delhi | 35.57       |
+| Madrid    | 34.37       |
+| Cairo     | 34.00       |
 
 GREAT !!! we now have only the cities and its celsius degree of temperature sorted descreasingly.
 
@@ -78,7 +78,7 @@ so let's explain the code;
 
 here we have the cities.txt file as input and replace the spaces with + sign to use them the url we'll send to the api using the **tr** command line tool.
 
-1.  **parallel -j400% --progress -C 'curl -s "<http://api.openweathermap.org/data/2.5/weather?q>={}&appid=17201c85f66369c680dcbf19352f3530"'**
+1.  **parallel -j400% --progress -C 'curl -s "<http://api.openweathermap.org/data/2.5/weather?q>={}&appid=your-api-key"'**
 
 here we tell the command line to do the following command in **parallel** using 400% of the CPU cores as the number of parallel jobs, i.e, in my machine there's 4 cores so I will run 16 jobs in parallel. --progress command to give me the information as it proceeds. -C to take care of the delimiter in the data file.
 
@@ -86,11 +86,13 @@ here we tell the command line to do the following command in **parallel** using 
 
 here we use **jq** tool to extract only the fields we want from the json result.
 
-1.  **json2csv | awk -F, '{print $1","$2-273.15}' |**
+1.  **json2csv |**
+ **awk -F, '{print $1","$2-273.15}' |**
 
 converting the json data to csv and then getting the Celsius degree of the temperature as it comes in Kelvin.
 
-1.  **header -r city,temperature |** **csvsql --query 'SELECT \* FROM stdin ORDER BY temperature DESC;' &gt; temp.csv**
+1.  **header -r city,temperature |**
+ **csvsql --query 'SELECT \* FROM stdin ORDER BY temperature DESC;' &gt; temp.csv**
 
 then we give names to the columns and sort the data using SQL commands.
 
