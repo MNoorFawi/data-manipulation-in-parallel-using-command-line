@@ -1,4 +1,4 @@
-importing and cleaning data in parallel with command line
+[importing and cleaning data in parallel with command line](https://github.com/MNoorFawi/data-manipulation-in-parallel-using-command-line)
 ================
 
 Importing data from APIs sometimes isn't easy especially when we want to import so much data, as we'll have to make so many requests to the API. This can take so much time if we do it sequentially. In such cases, going parallel is of great help.
