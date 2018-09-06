@@ -19,7 +19,7 @@ let's get down to business.
 
 **this is a regular call to the api and its result.**
 
-``` bash
+``` r
 curl -s 'http://api.openweathermap.org/data/2.5/weather?q=paris&appid=<your-api-key>'
 
 # {"coord":{"lon":2.35,"lat":48.86},
@@ -39,7 +39,7 @@ so we're going to use some wonderful command line tools to get only the data we 
 
 let's get the data we want in parallel and clean it adnd write it to disk.
 
-``` bash
+``` r
 < cities.txt tr ' ' '+' | 
 parallel -j400% --progress -C, 'curl -s "http://api.openweathermap.org/data/2.5/weather?q={}&appid=<your-api-key>"' | 
 jq '{name: .name, temperature: .main.temp}' | 
@@ -58,7 +58,7 @@ now we have connected and requested data in parallel from a web api, cleaning th
 
 let's check the data we have and then explain the code chunk by chunk.
 
-``` bash
+``` r
 < temp.csv csvlook
 ```
 
