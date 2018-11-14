@@ -8,3 +8,8 @@ json2csv | awk -F, '{print $1","$2-273.15}' |
 header -r city,temperature | 
 csvsql --query 'SELECT * FROM stdin ORDER BY temperature DESC;' | tee temp.csv | 
 head -n 6 | csvlook
+
+# parallel has a --delay argument e.g. --delay 0.5
+# extract a value from inside a list within json 
+# jq '{name: .name, temperature: .main.temp, weather: .weather[].description}'
+
