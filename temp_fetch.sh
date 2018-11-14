@@ -12,4 +12,6 @@ head -n 6 | csvlook
 # parallel has a --delay argument e.g. --delay 0.5
 # extract a value from inside a list within json 
 # jq '{name: .name, temperature: .main.temp, weather: .weather[].description}'
+# to output array of json objects with jq
+# jq '{name: .name, temperature: .main.temp, weather: .weather[].description}' | jq -s '.'
 
